@@ -1,0 +1,30 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution(str, t){
+                let answer = [];
+                let max = 1000;
+                for (let s of str) {
+                    max = s === t ? 0 : ++max;
+                    answer.push(max);
+                }
+                max = 1000;
+                for (let i = str.length - 1; i >= 0; i--) {
+                    max = str[i] === t
+                        ? 0
+                        : Math.min(answer[i], ++max);
+                    answer[i] = max;
+                 }
+
+                return answer;
+            }
+            
+            let str="teachermode";
+            console.log(solution(str, 'e'));
+        </script>
+    </body>
+</html>

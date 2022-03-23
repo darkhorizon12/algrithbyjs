@@ -1,0 +1,24 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution(){
+                let answer;
+                for (let i = 0; i < arguments.length; i++) {
+                    if (answer === undefined) {
+                        answer = arguments[i];
+                        continue;
+                    }
+
+                    answer = answer < arguments[i] ? answer : arguments[i];
+                }
+                return answer;
+            }
+
+            console.log(solution(12, 5 , 3, 0, 15, 11));
+        </script>
+    </body>
+</html>

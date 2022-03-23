@@ -1,0 +1,61 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution(n, arr){
+                let answer = 0, max = Number.MIN_SAFE_INTEGER;
+
+                for (let n of arr) {
+                    let sum = 0, tmp = n;
+                    while (tmp) {
+                        sum += tmp % 10; // 일 자리의 나머지
+                        tmp = Math.floor(tmp / 10); // 일자리를 제외한 나머지 몫
+                    }
+
+                    if (sum >= max) {
+                        answer = Math.max(n, answer), max = sum;
+                    }
+
+                }
+
+                return answer;
+            }
+
+            let arr=[407, 460, 603, 40, 521, 137, 123];
+            console.log(solution(7, arr));
+        </script>
+    </body>
+</html>
+
+
+
+<!--<html>-->
+<!--    <head>-->
+<!--        <meta charset="UTF-8">-->
+<!--        <title>출력결과</title>-->
+<!--    </head>-->
+<!--    <body>-->
+<!--        <script>-->
+<!--            function solution(n, arr){-->
+<!--                let answer = 0, max = Number.MIN_SAFE_INTEGER;-->
+
+<!--                for (let n of arr) {-->
+<!--                    let k = String(n);-->
+<!--                    let number = k.split("").reduce((a, b) => parseInt(a) + parseInt(b), 0);-->
+<!--                    if (number > max) {-->
+<!--                        answer = parseInt(n);-->
+<!--                        max = number;-->
+<!--                    } else if (number === max) {-->
+<!--                        answer = Math.max(answer , parseInt(n));-->
+<!--                    }-->
+<!--                }-->
+<!--                return answer;-->
+<!--            }-->
+<!--            -->
+<!--            let arr=[128, 460, 603, 40, 521, 137, 123];-->
+<!--            console.log(solution(7, arr));-->
+<!--        </script>-->
+<!--    </body>-->
