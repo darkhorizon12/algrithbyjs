@@ -5,13 +5,24 @@
     </head>
     <body>
         <script>
-            function solution(s){  
-                let answer;
+            function solution(str){
+                let answer, sh = new Map(), max = Number.MIN_SAFE_INTEGER;
+                for (let s of str) {
+                    if (sh.has(s)) sh.set(s, sh.get(s) + 1);
+                    else sh.set(s, 1);
+                }
+
+                for (let [key, value] of sh) {
+                    if (value > max) {
+                        max = value;
+                        answer = key;
+                    }
+                }
 
                 return answer;
             }
 
-            let str="BACBACCACCBDEDE";
+            let str = "BACBACCACCBDEDE";
             console.log(solution(str));
         </script>
     </body>

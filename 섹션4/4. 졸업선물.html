@@ -6,7 +6,26 @@
     <body>
         <script>
             function solution(m, product){
-                let answer;
+                let answer = 0, max = Number.MIN_SAFE_INTEGER;
+
+                for (let arr of product) {
+                    if (arr[0] > max) max = arr[0];
+                }
+
+                let total = [];
+                for (let arr of product) {
+                    if (arr[0] === max) arr[0] /= 2;
+                    total.push(arr[0] + arr[1]);
+                }
+
+                const sorted = total.sort((a, b) => a - b);
+                for (let i = 0; i < sorted.length; i++) {
+                    if (m < sorted[i]) break;
+                    m -= sorted[i];
+                    if (m >= 0) {
+                        answer++;
+                    }
+                }
 
                 return answer;
             }

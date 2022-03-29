@@ -5,12 +5,31 @@
     </head>
     <body>
         <script>
+            // function solution(str1, str2){
+            //     let answer;
+            //     let sorted1 = str1.split("").sort();
+            //     let sorted2 = str2.split("").sort();
+            //
+            //     answer = sorted1.join() === sorted2.join() ? "YES" : "NO";
+            //
+            //     return answer;
+            // }
             function solution(str1, str2){
-                let answer;
+                let hash = new Map();
+                for (let s of str1) {
+                    if (hash.has(s)) hash.set(s, hash.get(s) + 1);
+                    else hash.set(s, 1);
+                }
 
-                return answer;
+                for (let s of str2) {
+                    if (!hash.has(s) || hash.get(s) === 0) return "NO";
+
+                    hash.set(s, hash.get(s) - 1);
+                }
+
+                return "YES";
             }
-            
+
             let a="AbaAeCe";
             let b="baeeACA";
             console.log(solution(a, b));
