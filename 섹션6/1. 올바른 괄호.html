@@ -5,13 +5,20 @@
     </head>
     <body>
         <script>
-            function solution(s){
+            function solution(str){
                 let answer;
 
+                let rst = 0;
+                for (let s of str) {
+                    rst = s === "(" ? rst + 1 : rst - 1;
+                    if (rst < 0) return "NO";
+                }
+
+                answer = rst === 0 ? "YES" : "NO";
                 return answer;
             }
             
-            let a="(()(()))(()";
+            let a=")((()(()))()";
             console.log(solution(a));
         </script>
     </body>
