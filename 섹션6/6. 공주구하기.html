@@ -5,8 +5,23 @@
     </head>
     <body>
         <script>
+            function shift(queue, n) {
+                for (let i = 1; i < n; i++) queue.push(queue.shift());
+                queue.shift();
+
+                return queue;
+
+            }
             function solution(n, k){
                 let answer;
+                let arr = Array(n).fill().map((_, i) => i + 1);
+
+                while (arr.length) {
+                    shift(arr, k);
+                    if (arr.length === 1) break;
+                }
+
+                answer = arr[0];
 
                 return answer;
             }

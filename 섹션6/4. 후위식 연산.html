@@ -1,17 +1,47 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>출력결과</title>
+        <title>출력결과(postfix)</title>
     </head>
     <body>
         <script>
+            function calc(a, b, sign) {
+                switch (sign) {
+                    case "*":
+                        return a * b;
+                        break;
+                    case "+":
+                        return a + b;
+                        break;
+                    case "-":
+                        return a - b;
+                        break;
+                    case "/":
+                        return a / b;
+                        break;
+                    default:
+                        return "";
+                        break;
+                }
+            }
             function solution(s){  
                 let answer;
+                let stack = [], lt, rt;
+                for (let x of s) {
+                    if (!isNaN(x)) stack.push(x);
+                    else {
+                        let rt = parseInt(stack.pop());
+                        let lt = parseInt(stack.pop());
+                        let rst = calc(lt, rt, x);
+                        stack.push(rst);
+                    }
+                }
+                answer = stack.pop();
 
                 return answer;
             }
 
-            let str="352+*9-";
+            let str = "352+*9-";
             console.log(solution(str));
         </script>
     </body>
