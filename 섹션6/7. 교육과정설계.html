@@ -7,12 +7,18 @@
         <script>
             function solution(need, plan){
                 let answer;
+                let queue = plan.split("");
+                for (let x of plan) {
+                    if (need.indexOf(x) > -1) queue.push(queue.shift());
+                    else queue.shift();
+                }
+                answer = need === queue.join("") ? "YES" : "NO"
 
                 return answer;
             }
 
-            let a="CBA";
-            let b="CBDAGE";
+            let a = "CBA";
+            let b = "CBDAGE";
             console.log(solution(a, b));
         </script>
     </body>
