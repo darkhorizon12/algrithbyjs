@@ -1,17 +1,33 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>출력결과</title>
+        <title>출력결과(Least Recently Used)</title>
     </head>
     <body>
         <script>
             function solution(size, arr){
-                let answer;
+                let answer = Array.from({length: size}, () => 0);
+                arr.forEach((n, idx) => {
+                    answer = answer.includes(n) ? hit(answer, n, idx - 1) : miss(answer, n);
+                })
 
                 return answer;
             }
 
-            let arr=[1, 2, 3, 2, 6, 2, 3, 5, 7];
+            function hit(arr, n, idx) {
+                for (let i = idx - 1; i >= 1; i--) {
+                    arr[i] = arr[i - 1];
+                }
+                arr[0] = n;
+
+                return arr;
+            }
+
+            function miss(arr, n) {
+                return hit(arr, n, arr.length);
+            }
+
+            let arr = [1, 2, 3, 2, 6, 2, 3, 5, 7];
             console.log(solution(5, arr));
         </script>
     </body>
