@@ -8,6 +8,15 @@
             function solution(n){         
                 let answer;
 
+                function dfs(l) {
+                    if (l === 1)
+                        return 1;
+
+                    return l * dfs(l - 1);
+                }
+
+                answer = dfs(n);
+
                 return answer;
             }
 
