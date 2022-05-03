@@ -5,13 +5,29 @@
     </head>
     <body>
         <script>
+            /* dy[j] : j 시간 동안 얻을 수 있는 최대 점수 */
+            /* 중복을 피하기 위해 뒤에서부터 체크 */
+
             function solution(m, arr){  
                 let answer;
+                let dy = Array.from({length: m + 1}, () => 0);
+
+                for (let i = 0; i < arr.length; i++) {
+                    let score = arr[i][0];
+                    let time = arr[i][1];
+                    for (let j = m; j >= time; j--) {
+                        dy[j] = Math.max(dy[j], dy[j - time] + score);
+                    }
+                    console.log(dy);
+                }
+                answer = dy[m];
 
                 return answer;
             }
 
-            let arr=[[10, 5], [25, 12], [15, 8], [6, 3], [7, 4]];
+            let arr = [
+                [10, 5], [25, 12], [15, 8], [6, 3], [7, 4]
+            ];
             console.log(solution(20, arr));
         </script>
     </body>

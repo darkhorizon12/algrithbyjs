@@ -5,13 +5,29 @@
     </head>
     <body>
         <script>
+            /**
+             * i 금액 거슬러주는 데 사용된 동전의 최소갯수
+             */
             function solution(m, coin){  
-                let answer;
+                let answer = 0;
+                let dy = Array.from({length: m + 1}, () => 1_000);
+                dy[0] = 0;
+
+                for (let i = 0; i < coin.length; i++) {
+                    for (let j = coin[i]; j <= m; j++) {
+                        dy[j] = Math.min(dy[j], dy[j - coin[i]] + 1);
+                        // 현재 금액과 이미 지불한 거스름돈을 제외한 금액의 최소를 적용
+                        // 이미 현재의 거스름돈 하나를 지불했으므로 지불한 갯수에 1을 더한다
+                    }
+                    console.log(dy);
+                }
+
+                answer = dy[m];
 
                 return answer;
             }
 
-            let arr=[1, 2, 5];
+            let arr = [1, 2, 5];
             console.log(solution(15, arr));
         </script>
     </body>
